@@ -7,8 +7,9 @@ export const Container = styled.div`
 `
 
 export const Screen = styled.div`
-    width: 340px;
-    height: 578px;
-    border: 4px solid #10312a;
+    width: 21vw;
+    height: 35vw;
+    border: 0.5vw solid #10312a;
     background-color: #E8E1CF;
+    margin-top: 7.5vw;
 `;

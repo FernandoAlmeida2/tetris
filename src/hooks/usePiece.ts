@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export function usePiece() {
-  const [pos, setPos] = useState({ x: 18.235, y: -0.75 });
+  const [pos, setPos] = useState({ x: 24, y: 0 });
 
   function moveLeft() {
     setPos((prev) => ({
