@@ -55,4 +55,5 @@ export const piecesMap = {
   ],
 };
 
-export const initialScreen = new Array(17).fill([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+export const MAX_HORIZONTAL = 10;
+export const MAX_VERTICAL = 17;
