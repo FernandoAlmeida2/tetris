@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { initialGameState, X0, Y0 } from "../constants/grid";
+import { canMove, clearRow, fillPiecePosition, isRowCompleted } from "./utils";
 
 export function useGame() {
   const [gameState, setGameState] = useState(initialGameState);
-  const [isBlocked, setIsBlocked] = useState(false);
+  const [blockedPiecesCounter, setBlockedCounter] = useState(0)
 
   function moveLeft() {
     setGameState((prev) => ({
@@ -28,7 +29,7 @@ export function useGame() {
   function moveDown() {
     setGameState((prev) => {
       if (!canMove(prev.piecePosX, prev.piecePosY + 1, prev.grid))
-        setIsBlocked(true);
+        setBlockedCounter((prev) => prev + 1);
       return {
         piecePosX: prev.piecePosX,
         piecePosY: canMove(prev.piecePosX, prev.piecePosY + 1, prev.grid)
@@ -39,25 +40,18 @@ export function useGame() {
     });
   }
 
-  function canMove(x: number, y: number, grid: number[][]) {
-    if (grid[y - Y0] !== undefined && grid[y - Y0][x - X0] !== undefined) {
-      return grid[y - Y0][x - X0] === 0;
-    }
-
-    return false;
-  }
-
   function fetchNewPiece() {
-    setGameState((prevGame) => {
-      const newGrid = prevGame.grid.map((row) => [...row]);
-      newGrid[prevGame.piecePosY - Y0][prevGame.piecePosX - X0] = 1;
+    setGameState(({ grid, piecePosX, piecePosY }) => {
+      let newGrid = fillPiecePosition(grid, piecePosX, piecePosY);
+      if (isRowCompleted(newGrid[piecePosY - Y0])) {
+        newGrid = clearRow(newGrid, piecePosY - Y0);
+      }
       return {
         piecePosX: initialGameState.piecePosX,
         piecePosY: initialGameState.piecePosY,
         grid: newGrid,
       };
     });
-    setIsBlocked(false);
   }
 
   return {
@@ -67,7 +61,7 @@ export function useGame() {
     moveLeft,
     moveRight,
     moveDown,
-    isBlocked,
     fetchNewPiece,
+    blockedPiecesCounter,
   };
 }
