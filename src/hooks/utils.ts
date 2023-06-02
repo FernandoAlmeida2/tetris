@@ -15,7 +15,8 @@ export function canMoveDown(
       grid[y - Y0 + lastRow][x - X0 + i] === undefined
     )
       return false;
-    if (grid[y - Y0 + lastRow][x - X0 + i] === 1) return false;
+    if (grid[y - Y0 + lastRow][x - X0 + i] === 1 && piece[lastRow][i] === 1)
+      return false;
   }
   return true;
 }
@@ -26,6 +27,17 @@ export function canMoveLeft(
   grid: number[][],
   type: PiecesType
 ) {
+  const piece = piecesMap[type];
+  const firstColumn = 0;
+  for (let i = 0; i < piece.length; i++) {
+    if (
+      grid[y - Y0 + i] === undefined ||
+      grid[y - Y0 + i][x - X0] === undefined
+    )
+      return false;
+    if (grid[y - Y0 + i][x - X0] === 1 && piece[i][firstColumn] === 1)
+      return false;
+  }
   return true;
 }
 
@@ -35,6 +47,17 @@ export function canMoveRight(
   grid: number[][],
   type: PiecesType
 ) {
+  const piece = piecesMap[type];
+  const lastColumn = piece[0].length - 1;
+  for (let i = 0; i < piece.length; i++) {
+    if (
+      grid[y - Y0 + i] === undefined ||
+      grid[y - Y0 + i][x - X0] === undefined
+    )
+      return false;
+    if (grid[y - Y0 + i][x - X0] === 1 && piece[i][lastColumn] === 1)
+      return false;
+  }
   return true;
 }
 
@@ -48,8 +71,8 @@ export function fillPiecePosition(
   const newGrid = grid.map((row) => [...row]);
   for (let i = 0; i < piece.length; i++) {
     for (let j = 0; j < piece[i].length; j++) {
-      newGrid[y - Y0 + j][x - X0 + i] =
-        piece[j][i] === 1 ? piece[j][i] : newGrid[y - Y0 + j][x - X0 + i];
+      newGrid[y - Y0 + i][x - X0 + j] =
+        piece[i][j] === 1 ? piece[i][j] : newGrid[y - Y0 + i][x - X0 + j];
     }
   }
   return newGrid;
