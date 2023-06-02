@@ -9,8 +9,15 @@ type Props = {
 
 export default function Piece({ x, y, isColored }: Props) {
     const unit = 2;
+    //should do this to avoid too many renders warning "Over 200 classes were generated 
+    //for component Component. Consider using style property for frequently changed styles."
+    const colorStyle = {
+        backgroundColor: isColored === 1 ? "0.5vw double #E8E1CF" : "none",
+        border: isColored === 1 ? "0.5vw double #E8E1CF" : "none",
+    }
+
     return(
-        <Container left={x * unit} top={y * unit} unit={unit} isColored={isColored}></Container>
+        <Container left={x * unit} top={y * unit} unit={unit} style={colorStyle}></Container>
     )
 }
 

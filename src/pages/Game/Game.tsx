@@ -1,43 +1,43 @@
 import Piece from "../../components/piece/Piece";
 import { Container, Screen } from "./Game.styles";
-import { usePiece } from "../../hooks/usePiece";
+import { useGame } from "../../hooks/useGame";
 import { useEffect } from "react";
 import { X0, Y0 } from "../../constants/grid";
-import { useScreen } from "../../hooks/useScreen";
 
 export default function Game() {
-  const piece = usePiece();
-  const gameScreen = useScreen();
+  const gameState = useGame();
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
 
     const interval = setInterval(() => {
-      piece.moveDown(gameScreen.screenState);
-      if(piece.isBlocked) {
-        piece.fetchNewPiece();
-        gameScreen.updateGrid(piece.x, piece.y);
-      }
-    }, 1000);
+      gameState.moveDown();
+    }, 500);
+
     return () => clearInterval(interval);
-    
-  }, [piece.isBlocked]);
+  }, []);
+
+  useEffect(() => {    
+    if(gameState.isBlocked) {
+      gameState.fetchNewPiece();
+    }
+  }, [gameState.isBlocked]);
 
   function handleKeyDown(e: KeyboardEvent) {
     switch (e.code) {
       case "KeyA":
       case "ArrowLeft":
-        piece.moveLeft(gameScreen.screenState);
+        gameState.moveLeft();
         break;
 
       case "KeyD":
       case "ArrowRight":
-        piece.moveRight(gameScreen.screenState);
+        gameState.moveRight();
         break;
 
       case "KeyS":
       case "ArrowDown":
-        piece.moveDown(gameScreen.screenState);
+        gameState.moveDown();
         break;
     }
   }
@@ -45,14 +45,14 @@ export default function Game() {
   return (
     <Container>
       <Screen>
-        {gameScreen.screenState.map((line, j) => (
+        {gameState.grid.map((line, j) => (
           <div key={j}>
             {line.map((square: number,i: number) => (
               <Piece key={i} x={X0 + i} y={Y0 + j} isColored={square} />
             ))}
           </div>
         ))}
-        {<Piece x={piece.x} y={piece.y} isColored={1} />}
+        {<Piece x={gameState.piecePosX} y={gameState.piecePosY} isColored={1} />}
       </Screen>
     </Container>
   );
