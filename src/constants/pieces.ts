@@ -1,4 +1,4 @@
-export const pieceTypes: PieceNames[] = [
+export const pieceNames: PiecesType[] = [
   "iPiece",
   "jPiece",
   "lPiece",
@@ -8,7 +8,7 @@ export const pieceTypes: PieceNames[] = [
   "zPiece",
 ];
 
-export type PieceNames =
+export type PiecesType =
   | "iPiece"
   | "jPiece"
   | "lPiece"

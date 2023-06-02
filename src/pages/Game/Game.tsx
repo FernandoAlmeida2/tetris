@@ -3,6 +3,7 @@ import { Container, Screen } from "./Game.styles";
 import { useGame } from "../../hooks/useGame";
 import { useEffect } from "react";
 import { X0, Y0 } from "../../constants/grid";
+import { piecesMap } from "../../constants/pieces";
 
 export default function Game() {
   const gameState = useGame();
@@ -50,13 +51,13 @@ export default function Game() {
             ))}
           </div>
         ))}
-        {
-          <Piece
-            x={gameState.piecePosX}
-            y={gameState.piecePosY}
-            isColored={1}
-          />
-        }
+        {piecesMap[gameState.type].map((line, j) => (
+          <div key={j}>
+            {line.map((square: number, i: number) => (
+              <Piece key={i} x={gameState.piecePosX + i} y={gameState.piecePosY + j} isColored={square} />
+            ))}
+          </div>
+        ))}
       </Screen>
     </Container>
   );

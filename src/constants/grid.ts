@@ -1,3 +1,5 @@
+import { rafflePiece } from "../hooks/utils";
+
 export const X0 = 20;
 export const Y0 = 4;
 
@@ -7,4 +9,5 @@ export const initialGameState = {
   piecePosX: 24,
   piecePosY: 4,
   grid: initialScreen,
+  type: rafflePiece(),
 };

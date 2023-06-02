@@ -1,16 +1,57 @@
 import { X0, Y0 } from "../constants/grid";
+import { PiecesType, pieceNames, piecesMap } from "../constants/pieces";
 
-export function canMove(x: number, y: number, grid: number[][]) {
-  if (grid[y - Y0] !== undefined && grid[y - Y0][x - X0] !== undefined) {
-    return grid[y - Y0][x - X0] === 0;
+export function canMoveDown(
+  x: number,
+  y: number,
+  grid: number[][],
+  type: PiecesType
+) {
+  const piece = piecesMap[type];
+  const lastRow = piece.length - 1;
+  for (let i = 0; i < piece[lastRow].length; i++) {
+    if (
+      grid[y - Y0 + lastRow] === undefined ||
+      grid[y - Y0 + lastRow][x - X0 + i] === undefined
+    )
+      return false;
+    if (grid[y - Y0 + lastRow][x - X0 + i] === 1) return false;
   }
-
-  return false;
+  return true;
 }
 
-export function fillPiecePosition(grid: number[][], x: number, y: number) {
+export function canMoveLeft(
+  x: number,
+  y: number,
+  grid: number[][],
+  type: PiecesType
+) {
+  return true;
+}
+
+export function canMoveRight(
+  x: number,
+  y: number,
+  grid: number[][],
+  type: PiecesType
+) {
+  return true;
+}
+
+export function fillPiecePosition(
+  grid: number[][],
+  x: number,
+  y: number,
+  type: PiecesType
+) {
+  const piece = piecesMap[type];
   const newGrid = grid.map((row) => [...row]);
-  newGrid[y - Y0][x - X0] = 1;
+  for (let i = 0; i < piece.length; i++) {
+    for (let j = 0; j < piece[i].length; j++) {
+      newGrid[y - Y0 + j][x - X0 + i] =
+        piece[j][i] === 1 ? piece[j][i] : newGrid[y - Y0 + j][x - X0 + i];
+    }
+  }
   return newGrid;
 }
 
@@ -26,4 +67,10 @@ export function clearRow(grid: number[][], row: number) {
     newGrid.push(grid[i]);
   }
   return newGrid;
+}
+
+export function rafflePiece(): PiecesType {
+  const index = Math.floor(Math.random() * pieceNames.length);
+
+  return pieceNames[index];
 }
