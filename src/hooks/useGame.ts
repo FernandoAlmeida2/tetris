@@ -1,57 +1,66 @@
 import { useState } from "react";
-import { initialGameState, Y0 } from "../constants/grid";
-import { canMoveDown, canMoveLeft, canMoveRight, clearRow, fillPiecePosition, isRowCompleted, rafflePiece } from "./utils";
+import { gridY0, initialGameState } from "../constants/grid";
+import {
+  canMoveDown,
+  canMoveLeft,
+  canMoveRight,
+  clearRow,
+  fillPiecePosition,
+  anyRowCompleted,
+  rafflePiece,
+} from "./utils";
 
 export function useGame() {
   const [gameState, setGameState] = useState(initialGameState);
-  const [blockedPiecesCounter, setBlockedCounter] = useState(0)
+  const [blockedPiecesCounter, setBlockedCounter] = useState(0);
 
   function moveLeft() {
-    setGameState((prev) => ({
-      piecePosX: canMoveLeft(prev.piecePosX - 1, prev.piecePosY, prev.grid, prev.type)
-        ? prev.piecePosX - 1
-        : prev.piecePosX,
-      piecePosY: prev.piecePosY,
-      grid: prev.grid,
-      type: prev.type
+    setGameState(({ pieceX0, pieceY0, grid, type }) => ({
+      pieceX0: canMoveLeft(pieceX0, pieceY0, grid, type)
+        ? pieceX0 - 1
+        : pieceX0,
+      pieceY0,
+      grid,
+      type,
     }));
   }
 
   function moveRight() {
-    setGameState((prev) => ({
-      piecePosX: canMoveRight(prev.piecePosX + 1, prev.piecePosY, prev.grid, prev.type)
-        ? prev.piecePosX + 1
-        : prev.piecePosX,
-      piecePosY: prev.piecePosY,
-      grid: prev.grid,
-      type: prev.type
+    setGameState(({ pieceX0, pieceY0, grid, type }) => ({
+      pieceX0: canMoveRight(pieceX0, pieceY0, grid, type)
+        ? pieceX0 + 1
+        : pieceX0,
+      pieceY0,
+      grid,
+      type,
     }));
   }
 
   function moveDown() {
-    setGameState((prev) => {
-      if (!canMoveDown(prev.piecePosX, prev.piecePosY + 1, prev.grid, prev.type))
+    setGameState(({ pieceX0, pieceY0, grid, type }) => {
+      if (!canMoveDown(pieceX0, pieceY0, grid, type))
         setBlockedCounter((prev) => prev + 1);
       return {
-        piecePosX: prev.piecePosX,
-        piecePosY: canMoveDown(prev.piecePosX, prev.piecePosY + 1, prev.grid, prev.type)
-          ? prev.piecePosY + 1
-          : prev.piecePosY,
-        grid: prev.grid,
-        type: prev.type
+        pieceX0,
+        pieceY0: canMoveDown(pieceX0, pieceY0, grid, type)
+          ? pieceY0 + 1
+          : pieceY0,
+        grid,
+        type,
       };
     });
   }
 
   function fetchNewPiece() {
-    setGameState(({ grid, piecePosX, piecePosY, type }) => {
-      let newGrid = fillPiecePosition(grid, piecePosX, piecePosY, type);
-      if (isRowCompleted(newGrid[piecePosY - Y0])) {
-        newGrid = clearRow(newGrid, piecePosY - Y0);
+    setGameState(({ pieceX0, pieceY0, grid, type }) => {
+      let newGrid = fillPiecePosition(grid, pieceX0, pieceY0, type);
+      const rowsCompleted = anyRowCompleted(newGrid)
+      if (rowsCompleted.length > 0) {
+        newGrid = clearRow(newGrid, rowsCompleted);
       }
       return {
-        piecePosX: initialGameState.piecePosX,
-        piecePosY: initialGameState.piecePosY,
+        pieceX0: initialGameState.pieceX0,
+        pieceY0: initialGameState.pieceY0,
         grid: newGrid,
         type: rafflePiece(),
       };
@@ -59,8 +68,8 @@ export function useGame() {
   }
 
   return {
-    piecePosX: gameState.piecePosX,
-    piecePosY: gameState.piecePosY,
+    pieceX0: gameState.pieceX0,
+    pieceY0: gameState.pieceY0,
     grid: gameState.grid,
     type: gameState.type,
     moveLeft,

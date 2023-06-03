@@ -54,6 +54,3 @@ export const piecesMap = {
     [0, 1, 1],
   ],
 };
-
-export const MAX_HORIZONTAL = 10;
-export const MAX_VERTICAL = 17;

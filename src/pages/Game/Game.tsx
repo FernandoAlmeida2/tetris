@@ -2,7 +2,7 @@ import Piece from "../../components/piece/Piece";
 import { Container, Screen } from "./Game.styles";
 import { useGame } from "../../hooks/useGame";
 import { useEffect } from "react";
-import { X0, Y0 } from "../../constants/grid";
+import { gridX0, gridY0 } from "../../constants/grid";
 import { piecesMap } from "../../constants/pieces";
 
 export default function Game() {
@@ -12,7 +12,7 @@ export default function Game() {
     window.addEventListener("keydown", handleKeyDown);
     const interval = setInterval(() => {
       gameState.moveDown();
-    }, 500);
+    }, 1000);
     return () => clearInterval(interval);
   }, []);
 
@@ -47,14 +47,14 @@ export default function Game() {
         {gameState.grid.map((line, j) => (
           <div key={j}>
             {line.map((square: number, i: number) => (
-              <Piece key={i} x={X0 + i} y={Y0 + j} isColored={square} />
+              <Piece key={i} x={gridX0 + i} y={gridY0 + j} isColored={square} />
             ))}
           </div>
         ))}
         {piecesMap[gameState.type].map((line, j) => (
           <div key={j}>
             {line.map((square: number, i: number) => (
-              <Piece key={i} x={gameState.piecePosX + i} y={gameState.piecePosY + j} isColored={square} />
+              <Piece key={i} x={gameState.pieceX0 + i} y={gameState.pieceY0 + j} isColored={square} />
             ))}
           </div>
         ))}
