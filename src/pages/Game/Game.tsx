@@ -4,6 +4,7 @@ import { useGame } from "../../hooks/useGame";
 import { useEffect } from "react";
 import { gridX0, gridY0 } from "../../constants/grid";
 import { piecesMap } from "../../constants/pieces";
+import InfoPanel from "../../components/InfoPanel.tsx/InfoPanel";
 
 export default function Game() {
   const gameState = useGame();
@@ -69,6 +70,7 @@ export default function Game() {
           </div>
         ))}
       </Screen>
+      <InfoPanel nextPiece={gameState.nextPiece} score={gameState.score} speed={1} />
     </Container>
   );
 }

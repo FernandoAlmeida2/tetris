@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { initialGameState } from "../constants/grid";
-import { piecesMap } from "../constants/pieces";
 import {
   canMoveDown,
   canMoveLeft,
@@ -49,16 +48,20 @@ export function useGame() {
   function fetchNewPiece() {
     setGameState((prev) => {
       let newGrid = fillPiecePosition(prev);
+      let scoreIncrement = 0; 
       const rowsCompleted = anyRowCompleted(newGrid);
       if (rowsCompleted.length > 0) {
         newGrid = clearRow(newGrid, rowsCompleted);
+        scoreIncrement = rowsCompleted.length > 1 ? (2*rowsCompleted.length - 1) : 1;
       }
       return {
         pieceX0: initialGameState.pieceX0,
         pieceY0: initialGameState.pieceY0,
         grid: newGrid,
-        type: rafflePiece(),
+        type: prev.nextPiece,
+        nextPiece: rafflePiece(),
         rotation: initialGameState.rotation,
+        score: prev.score+ scoreIncrement
       };
     });
   }

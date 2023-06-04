@@ -1,3 +1,5 @@
+export const unit = 2;
+
 export const pieceNames: PiecesType[] = [
   "iPiece",
   "jPiece",

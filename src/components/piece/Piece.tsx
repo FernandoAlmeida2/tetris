@@ -1,3 +1,4 @@
+import { unit } from "../../constants/pieces";
 import { Container } from "./styles";
 
 type Props = {
@@ -7,9 +8,8 @@ type Props = {
 };
 
 export default function Piece({ x, y, isColored }: Props) {
-  const unit = 2;
   //should do this to avoid too many renders warning "Over 200 classes were generated
-  //for component Component. Consider using style property for frequently changed styles."
+  //for component Component. Consider using style property for frequently changed styles.
   const colorStyle = {
     backgroundColor: isColored === 1 ? "#10312a" : "transparent",
     border: isColored === 1 ? "0.5vw double #E8E1CF" : "none",
