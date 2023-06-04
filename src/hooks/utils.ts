@@ -1,13 +1,9 @@
-import { gridX0, gridY0 } from "../constants/grid";
+import { GameStateType, gridX0, gridY0 } from "../constants/grid";
 import { PiecesType, pieceNames, piecesMap } from "../constants/pieces";
 
-export function canMoveDown(
-  x: number,
-  y: number,
-  grid: number[][],
-  type: PiecesType
-) {
-  const piece = piecesMap[type];
+export function canMoveDown(gameState: GameStateType) {
+  const { pieceX0: x, pieceY0: y, grid, type, rotation } = gameState;
+  const piece = piecesMap[type][rotation];
   for (let i = 0; i < piece.length; i++) {
     for (let j = 0; j < piece[i].length; j++) {
       if (piece[i][j] === 0) continue;
@@ -22,13 +18,9 @@ export function canMoveDown(
   return true;
 }
 
-export function canMoveLeft(
-  x: number,
-  y: number,
-  grid: number[][],
-  type: PiecesType
-) {
-  const piece = piecesMap[type];
+export function canMoveLeft(gameState: GameStateType) {
+  const { pieceX0: x, pieceY0: y, grid, type, rotation } = gameState;
+  const piece = piecesMap[type][rotation];
   for (let i = 0; i < piece.length; i++) {
     for (let j = 0; j < piece[i].length; j++) {
       if (piece[i][j] === 0) continue;
@@ -39,13 +31,9 @@ export function canMoveLeft(
   return true;
 }
 
-export function canMoveRight(
-  x: number,
-  y: number,
-  grid: number[][],
-  type: PiecesType
-) {
-  const piece = piecesMap[type];
+export function canMoveRight(gameState: GameStateType) {
+  const { pieceX0: x, pieceY0: y, grid, type, rotation } = gameState;
+  const piece = piecesMap[type][rotation];
   for (let i = 0; i < piece.length; i++) {
     for (let j = 0; j < piece[i].length; j++) {
       if (piece[i][j] === 0) continue;
@@ -60,9 +48,8 @@ export function fillPiecePosition(
   grid: number[][],
   x: number,
   y: number,
-  type: PiecesType
+  piece: number[][]
 ) {
-  const piece = piecesMap[type];
   const newGrid = grid.map((row) => [...row]);
   for (let i = 0; i < piece.length; i++) {
     for (let j = 0; j < piece[i].length; j++) {

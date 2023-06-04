@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { gridY0, initialGameState } from "../constants/grid";
+import { piecesMap } from "../constants/pieces";
 import {
   canMoveDown,
   canMoveLeft,
@@ -15,46 +16,44 @@ export function useGame() {
   const [blockedPiecesCounter, setBlockedCounter] = useState(0);
 
   function moveLeft() {
-    setGameState(({ pieceX0, pieceY0, grid, type }) => ({
-      pieceX0: canMoveLeft(pieceX0, pieceY0, grid, type)
-        ? pieceX0 - 1
-        : pieceX0,
-      pieceY0,
-      grid,
-      type,
+    setGameState((prev) => ({
+      ...prev,
+      pieceX0: canMoveLeft(prev) ? prev.pieceX0 - 1 : prev.pieceX0,
     }));
   }
 
   function moveRight() {
-    setGameState(({ pieceX0, pieceY0, grid, type }) => ({
-      pieceX0: canMoveRight(pieceX0, pieceY0, grid, type)
-        ? pieceX0 + 1
-        : pieceX0,
-      pieceY0,
-      grid,
-      type,
+    setGameState((prev) => ({
+      ...prev,
+      pieceX0: canMoveRight(prev) ? prev.pieceX0 + 1 : prev.pieceX0,
     }));
   }
 
   function moveDown() {
-    setGameState(({ pieceX0, pieceY0, grid, type }) => {
-      if (!canMoveDown(pieceX0, pieceY0, grid, type))
-        setBlockedCounter((prev) => prev + 1);
+    setGameState((prev) => {
+      if (!canMoveDown(prev)) setBlockedCounter((prev) => prev + 1);
       return {
-        pieceX0,
-        pieceY0: canMoveDown(pieceX0, pieceY0, grid, type)
-          ? pieceY0 + 1
-          : pieceY0,
-        grid,
-        type,
+        ...prev,
+        pieceY0: canMoveDown(prev) ? prev.pieceY0 + 1 : prev.pieceY0,
       };
     });
   }
+  function rotClockwise() {
+    setGameState((prev) => ({
+      ...prev,
+      pieceX0: canMoveRight(prev) ? prev.pieceX0 + 1 : prev.pieceX0,
+    }));
+  }
 
   function fetchNewPiece() {
-    setGameState(({ pieceX0, pieceY0, grid, type }) => {
-      let newGrid = fillPiecePosition(grid, pieceX0, pieceY0, type);
-      const rowsCompleted = anyRowCompleted(newGrid)
+    setGameState(({ pieceX0, pieceY0, grid, type, rotation }) => {
+      let newGrid = fillPiecePosition(
+        grid,
+        pieceX0,
+        pieceY0,
+        piecesMap[type][rotation]
+      );
+      const rowsCompleted = anyRowCompleted(newGrid);
       if (rowsCompleted.length > 0) {
         newGrid = clearRow(newGrid, rowsCompleted);
       }
@@ -63,6 +62,7 @@ export function useGame() {
         pieceY0: initialGameState.pieceY0,
         grid: newGrid,
         type: rafflePiece(),
+        rotation,
       };
     });
   }
