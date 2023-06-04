@@ -8,7 +8,7 @@ export function canMoveDown(gameState: GameStateType) {
     for (let j = 0; j < piece[i].length; j++) {
       if (piece[i][j] === 0) continue;
       if (
-        grid[y + i + 1 - gridY0] === undefined ||
+        grid[y - gridY0 + i + 1] === undefined ||
         grid[y - gridY0 + i + 1][x - gridX0 + j] === undefined
       )
         return false;
@@ -44,12 +44,29 @@ export function canMoveRight(gameState: GameStateType) {
   return true;
 }
 
-export function fillPiecePosition(
-  grid: number[][],
-  x: number,
-  y: number,
-  piece: number[][]
-) {
+export function rotateIfCan(gameState: GameStateType) {
+  const { pieceX0: x, pieceY0: y, grid, type, rotation } = gameState;
+  const newRotation =
+    rotation === 0 ? piecesMap[type].length - 1 : rotation - 1;
+  const piece = piecesMap[type][newRotation];
+  for (let i = 0; i < piece.length; i++) {
+    for (let j = 0; j < piece[i].length; j++) {
+      if (piece[i][j] === 1) {
+        if (
+          grid[y - gridY0 + i] === undefined ||
+          grid[y - gridY0 + i][x - gridX0 + j] === undefined
+        )
+          return rotation;
+        if (grid[y - gridY0 + i][x - gridX0 + j] === 1) return rotation;
+      }
+    }
+  }
+  return newRotation;
+}
+
+export function fillPiecePosition(gameState: GameStateType) {
+  const { pieceX0: x, pieceY0: y, grid, type, rotation } = gameState;
+  const piece = piecesMap[type][rotation];
   const newGrid = grid.map((row) => [...row]);
   for (let i = 0; i < piece.length; i++) {
     for (let j = 0; j < piece[i].length; j++) {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { gridY0, initialGameState } from "../constants/grid";
+import { initialGameState } from "../constants/grid";
 import { piecesMap } from "../constants/pieces";
 import {
   canMoveDown,
@@ -9,6 +9,7 @@ import {
   fillPiecePosition,
   anyRowCompleted,
   rafflePiece,
+  rotateIfCan,
 } from "./utils";
 
 export function useGame() {
@@ -38,21 +39,16 @@ export function useGame() {
       };
     });
   }
-  function rotClockwise() {
+  function rotate() {
     setGameState((prev) => ({
       ...prev,
-      pieceX0: canMoveRight(prev) ? prev.pieceX0 + 1 : prev.pieceX0,
+      rotation: rotateIfCan(prev),
     }));
   }
 
   function fetchNewPiece() {
-    setGameState(({ pieceX0, pieceY0, grid, type, rotation }) => {
-      let newGrid = fillPiecePosition(
-        grid,
-        pieceX0,
-        pieceY0,
-        piecesMap[type][rotation]
-      );
+    setGameState((prev) => {
+      let newGrid = fillPiecePosition(prev);
       const rowsCompleted = anyRowCompleted(newGrid);
       if (rowsCompleted.length > 0) {
         newGrid = clearRow(newGrid, rowsCompleted);
@@ -62,19 +58,17 @@ export function useGame() {
         pieceY0: initialGameState.pieceY0,
         grid: newGrid,
         type: rafflePiece(),
-        rotation,
+        rotation: initialGameState.rotation,
       };
     });
   }
 
   return {
-    pieceX0: gameState.pieceX0,
-    pieceY0: gameState.pieceY0,
-    grid: gameState.grid,
-    type: gameState.type,
+    ...gameState,
     moveLeft,
     moveRight,
     moveDown,
+    rotate,
     fetchNewPiece,
     blockedPiecesCounter,
   };

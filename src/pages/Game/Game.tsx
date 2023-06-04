@@ -38,6 +38,11 @@ export default function Game() {
       case "ArrowDown":
         gameState.moveDown();
         break;
+
+      case "KeyR":
+      case "ArrowUp":
+        gameState.rotate();
+        break;
     }
   }
 
@@ -51,10 +56,15 @@ export default function Game() {
             ))}
           </div>
         ))}
-        {piecesMap[gameState.type].map((line, j) => (
+        {piecesMap[gameState.type][gameState.rotation].map((line, j) => (
           <div key={j}>
             {line.map((square: number, i: number) => (
-              <Piece key={i} x={gameState.pieceX0 + i} y={gameState.pieceY0 + j} isColored={square} />
+              <Piece
+                key={i}
+                x={gameState.pieceX0 + i}
+                y={gameState.pieceY0 + j}
+                isColored={square}
+              />
             ))}
           </div>
         ))}
