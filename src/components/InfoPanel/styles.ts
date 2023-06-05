@@ -3,7 +3,7 @@ import { MAX_VERTICAL } from "../../constants/grid";
 import { unit } from "../../constants/pieces";
 
 export const Container = styled.div`
-  width: 8vw;
+  width: 9vw;
   height: ${2 * MAX_VERTICAL + 1}vw;
   background-color: #e8e1cf;
   margin-top: 1.5vw;
@@ -17,7 +17,7 @@ export const Container = styled.div`
   border-color: #10312a;
   border-radius: 0 0.5vw 0.5vw 0;
   @media (max-width: 700px) {
-    width: 16vw;
+    width: 18vw;
     height: ${4 * MAX_VERTICAL + 1}vw;
     margin-top: 7vw;
     gap: ${8 * unit}vw;
@@ -48,6 +48,15 @@ export const TextStyle = styled.div`
   }
 `;
 
+export const PiecesDiv = styled.div`
+  width: ${4 * unit}vw;
+  height: ${4 * unit}vw;
+  @media (max-width: 700px) {
+    width: ${8 * unit}vw;
+    height: ${8 * unit}vw;
+  }
+`;
+
 export const RowStyle = styled.div`
   display: flex;
 `;
@@ -57,10 +66,12 @@ export const PieceStyle = styled.div<{ isColored: number }>`
   height: ${unit}vw;
   background-color: ${(props) =>
     props.isColored === 1 ? "#10312a" : "transparent"};
-  border: ${(props) => (props.isColored === 1 ? "0.5vw double #E8E1CF" : "none")};
+  border: ${(props) =>
+    props.isColored === 1 ? "0.5vw double #E8E1CF" : "none"};
   @media (max-width: 700px) {
     width: ${2 * unit}vw;
     height: ${2 * unit}vw;
-    border: ${(props) => (props.isColored === 1 ? "1vw double #E8E1CF" : "none")};
+    border: ${(props) =>
+      props.isColored === 1 ? "1vw double #E8E1CF" : "none"};
   }
 `;

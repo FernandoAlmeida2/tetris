@@ -8,7 +8,7 @@ const initialScreen: number[][] = new Array(MAX_VERTICAL).fill(new Array(MAX_HOR
 
 export const initialGameState = {
   pieceX0: 4,
-  pieceY0: 2,
+  pieceY0: 0,
   grid: initialScreen,
   type: rafflePiece(),
   nextPiece: rafflePiece(),
@@ -25,3 +25,5 @@ export type GameStateType = {
   rotation: number;
   score: number;
 };
+
+export const finalScreen: number[][] = new Array(MAX_VERTICAL).fill(new Array(MAX_HORIZONTAL).fill(1));

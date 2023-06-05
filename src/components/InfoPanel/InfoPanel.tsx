@@ -1,5 +1,5 @@
 import { piecesMap, PiecesType } from "../../constants/pieces";
-import { Container, PieceStyle, RowStyle, TextStyle } from "./styles";
+import { Container, PiecesDiv, PieceStyle, RowStyle, TextStyle } from "./styles";
 
 type Props = {
   nextPiece: PiecesType;
@@ -14,7 +14,7 @@ export default function InfoPanel({ nextPiece, score, speed }: Props) {
         <h1>{getScore(score)}</h1>
         <p> SCORE</p>
       </TextStyle>
-      <div>
+      <PiecesDiv>
         {piecesMap[nextPiece][0].map((line, j) => (
           <RowStyle key={j}>
             {line.map((square: number, i: number) => (
@@ -22,7 +22,7 @@ export default function InfoPanel({ nextPiece, score, speed }: Props) {
             ))}
           </RowStyle>
         ))}
-      </div>
+      </PiecesDiv>
       <TextStyle>
         <h1>{speed}</h1>
         <p> SPEED</p>

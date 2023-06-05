@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { initialGameState } from "../constants/grid";
+import { finalScreen, initialGameState } from "../constants/grid";
 import {
   canMoveDown,
   canMoveLeft,
@@ -66,6 +66,17 @@ export function useGame() {
     });
   }
 
+  function gameOver(){
+    setGameState((prev) => ({
+      ...prev,
+      grid: finalScreen,
+    }));
+  }
+
+  function reset(){
+    setGameState(initialGameState);
+  }
+
   return {
     ...gameState,
     moveLeft,
@@ -73,6 +84,8 @@ export function useGame() {
     moveDown,
     rotate,
     fetchNewPiece,
+    gameOver,
+    reset,
     blockedPiecesCounter,
   };
 }

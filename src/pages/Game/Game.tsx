@@ -1,7 +1,7 @@
 import Piece from "../../components/piece/Piece";
 import { ConsoleStyle, Container, ReturnStyle, Screen } from "./Game.styles";
 import { useGame } from "../../hooks/useGame";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { piecesMap } from "../../constants/pieces";
 import InfoPanel from "../../components/InfoPanel/InfoPanel";
 import { useNavigate, useParams } from "react-router-dom";
@@ -11,19 +11,28 @@ export default function Game() {
   const gameState = useGame();
   const { speed } = useParams();
   const navigate = useNavigate();
-  const timeInterval = 1000 - Number(speed) * 100;
+  const timeInterval = 1000 - Number(speed) * 90;
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
     const interval = setInterval(() => {
       gameState.moveDown();
     }, timeInterval);
+    
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     if (gameState.blockedPiecesCounter > 0) {
-      gameState.fetchNewPiece();
+      if(gameState.pieceY0 <= 0) {
+        gameState.gameOver();
+        const timeout = setTimeout(() => {
+          gameState.reset();
+        }, 100);
+        return () => clearTimeout(timeout);
+      } else{
+        gameState.fetchNewPiece();
+      }    
     }
   }, [gameState.blockedPiecesCounter]);
 
