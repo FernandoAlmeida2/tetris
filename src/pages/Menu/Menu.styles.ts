@@ -1,25 +1,75 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    min-height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 200px;
+  align-items: center;
+  color: #10312a;
+  h1 {
+    font-size: 56px;
+  }
+  div {
     display: flex;
-    justify-content: center;
-    align-items: center;
-`
+    flex-direction: column;
+    gap: 10px;
+    p {
+      line-height: 24px;
+    }
+  }
+  @media (max-width: 700px) {
+    gap: 48.5vw;
+    h1 {
+      font-size: 13.6vw;
+    }
+    div {
+      gap: 2.4vw;
+      p {
+        line-height: 5.8vw;
+      }
+    }
+  }
+`;
+
+export const InputStyle = styled.input`
+  width: 250px;
+  height: 30px;
+  padding-left: 10px;
+  font-size: 14px;
+  color: #10312a;
+  ::placeholder {
+    opacity: 1;
+  }
+  @media (max-width: 700px) {
+    width: 67vw;
+    height: 10vw;
+    padding-left: 2.4vw;
+    font-size: 4vw;
+  }
+`;
 
 export const ButtonStyle = styled.button`
-    color: #fff;
-    background-color: #d62222;
-    width: 200px;
-    height: 45px;
-    cursor: pointer;
-    font-size: 14px;
-    border: none;
-    border-radius: 5px;
-    :hover{
-        width: 220px;
-        height: 49.5px;
-        font-weight: 700;
-        font-size: 16px;
+  color: #fff;
+  background-color: #d62222;
+  width: 250px;
+  height: 45px;
+  cursor: pointer;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  :hover {
+    font-weight: 700;
+    font-size: 16px;
+  }
+  @media (max-width: 700px) {
+    width: 67vw;
+    height: 10vw;
+    font-size: 4vw;
+    border-radius: 1.2vw;
+    :hover {
+      font-size: 4.5vw;
     }
-`
+  }
+`;

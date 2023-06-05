@@ -12,12 +12,23 @@ export const Container = styled.div`
   align-items: center;
   gap: ${4 * unit}vw;
   padding: ${unit}vw;
+  border-width: 0.5vw 0.5vw 0.5vw 0;
+  border-style: solid;
+  border-color: #10312a;
   border-radius: 0 0.5vw 0.5vw 0;
+  @media (max-width: 700px) {
+    width: 16vw;
+    height: ${4 * MAX_VERTICAL + 1}vw;
+    margin-top: 7vw;
+    gap: ${8 * unit}vw;
+    padding: ${2 * unit}vw;
+    border-radius: 0 1vw 1vw 0;
+  }
 `;
 
 export const TextStyle = styled.div`
   text-align: center;
-  h1{
+  h1 {
     font-size: 3vw;
     font-weight: 700;
     margin-bottom: 1vw;
@@ -25,15 +36,31 @@ export const TextStyle = styled.div`
   p {
     font-size: 1.5vw;
   }
-`
+  @media (max-width: 700px) {
+    h1 {
+      font-size: 6vw;
+      font-weight: 700;
+      margin-bottom: 2vw;
+    }
+    p {
+      font-size: 3vw;
+    }
+  }
+`;
 
 export const RowStyle = styled.div`
   display: flex;
 `;
 
-export const PieceStyle = styled.div<{ isColored: number; }>`
+export const PieceStyle = styled.div<{ isColored: number }>`
   width: ${unit}vw;
   height: ${unit}vw;
-  background-color: ${(props) => props.isColored === 1 ? "#10312a" : "transparent"};
-  border: ${(props) => props.isColored === 1 ? "0.5vw double #E8E1CF" : "none"};
+  background-color: ${(props) =>
+    props.isColored === 1 ? "#10312a" : "transparent"};
+  border: ${(props) => (props.isColored === 1 ? "0.5vw double #E8E1CF" : "none")};
+  @media (max-width: 700px) {
+    width: ${2 * unit}vw;
+    height: ${2 * unit}vw;
+    border: ${(props) => (props.isColored === 1 ? "1vw double #E8E1CF" : "none")};
+  }
 `;

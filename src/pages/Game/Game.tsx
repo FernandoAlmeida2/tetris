@@ -1,20 +1,22 @@
 import Piece from "../../components/piece/Piece";
-import { ConsoleStyle, Container, Screen } from "./Game.styles";
+import { ButtonsDiv, ConsoleStyle, Container, Screen } from "./Game.styles";
 import { useGame } from "../../hooks/useGame";
 import { useEffect } from "react";
-import { gridX0, gridY0 } from "../../constants/grid";
 import { piecesMap } from "../../constants/pieces";
 import InfoPanel from "../../components/InfoPanel.tsx/InfoPanel";
+import { useParams } from "react-router-dom";
 
 export default function Game() {
   const gameState = useGame();
+  const { speed } = useParams();
+  const timeInterval = 1000 - Number(speed) * 100;
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
-    const interval = setInterval(() => {
+    /* const interval = setInterval(() => {
       gameState.moveDown();
-    }, 1000);
-    return () => clearInterval(interval);
+    }, timeInterval);
+    return () => clearInterval(interval); */
   }, []);
 
   useEffect(() => {
@@ -54,12 +56,7 @@ export default function Game() {
           {gameState.grid.map((line, j) => (
             <div key={j}>
               {line.map((square: number, i: number) => (
-                <Piece
-                  key={i}
-                  x={gridX0 + i}
-                  y={gridY0 + j}
-                  isColored={square}
-                />
+                <Piece key={i} x={i} y={j} isColored={square} />
               ))}
             </div>
           ))}
@@ -79,9 +76,10 @@ export default function Game() {
         <InfoPanel
           nextPiece={gameState.nextPiece}
           score={gameState.score}
-          speed={1}
+          speed={Number(speed)}
         />
       </ConsoleStyle>
+      <ButtonsDiv></ButtonsDiv>
     </Container>
   );
 }

@@ -12,7 +12,7 @@ function App() {
         <Container>
           <Routes>
             <Route path="/" element={<Menu />} />
-            <Route path="/game" element={<Game />} />
+            <Route path="/game/:speed" element={<Game />} />
           </Routes>
         </Container>
       </BrowserRouter>

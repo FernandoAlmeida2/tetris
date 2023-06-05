@@ -1,4 +1,4 @@
-import { GameStateType, gridX0, gridY0 } from "../constants/grid";
+import { GameStateType } from "../constants/grid";
 import { PiecesType, pieceNames, piecesMap } from "../constants/pieces";
 
 export function canMoveDown(gameState: GameStateType) {
@@ -7,12 +7,9 @@ export function canMoveDown(gameState: GameStateType) {
   for (let i = 0; i < piece.length; i++) {
     for (let j = 0; j < piece[i].length; j++) {
       if (piece[i][j] === 0) continue;
-      if (
-        grid[y - gridY0 + i + 1] === undefined ||
-        grid[y - gridY0 + i + 1][x - gridX0 + j] === undefined
-      )
+      if (grid[y + i + 1] === undefined || grid[y + i + 1][x + j] === undefined)
         return false;
-      if (grid[y + i + 1 - gridY0][x - gridX0 + j] === 1) return false;
+      if (grid[y + i + 1][x + j] === 1) return false;
     }
   }
   return true;
@@ -24,8 +21,8 @@ export function canMoveLeft(gameState: GameStateType) {
   for (let i = 0; i < piece.length; i++) {
     for (let j = 0; j < piece[i].length; j++) {
       if (piece[i][j] === 0) continue;
-      if (grid[y + i - gridY0][x + j - 1 - gridX0] === undefined) return false;
-      if (grid[y + i - gridY0][x + j - 1 - gridX0] === 1) return false;
+      if (grid[y + i][x + j - 1] === undefined) return false;
+      if (grid[y + i][x + j - 1] === 1) return false;
     }
   }
   return true;
@@ -37,8 +34,8 @@ export function canMoveRight(gameState: GameStateType) {
   for (let i = 0; i < piece.length; i++) {
     for (let j = 0; j < piece[i].length; j++) {
       if (piece[i][j] === 0) continue;
-      if (grid[y + i - gridY0][x + j + 1 - gridX0] === undefined) return false;
-      if (grid[y + i - gridY0][x + j + 1 - gridX0] === 1) return false;
+      if (grid[y + i][x + j + 1] === undefined) return false;
+      if (grid[y + i][x + j + 1] === 1) return false;
     }
   }
   return true;
@@ -52,12 +49,9 @@ export function rotateIfCan(gameState: GameStateType) {
   for (let i = 0; i < piece.length; i++) {
     for (let j = 0; j < piece[i].length; j++) {
       if (piece[i][j] === 1) {
-        if (
-          grid[y - gridY0 + i] === undefined ||
-          grid[y - gridY0 + i][x - gridX0 + j] === undefined
-        )
+        if (grid[y + i] === undefined || grid[y + i][x + j] === undefined)
           return rotation;
-        if (grid[y - gridY0 + i][x - gridX0 + j] === 1) return rotation;
+        if (grid[y + i][x + j] === 1) return rotation;
       }
     }
   }
@@ -71,7 +65,7 @@ export function fillPiecePosition(gameState: GameStateType) {
   for (let i = 0; i < piece.length; i++) {
     for (let j = 0; j < piece[i].length; j++) {
       if (piece[i][j] === 1) {
-        newGrid[y - gridY0 + i][x - gridX0 + j] = 1;
+        newGrid[y + i][x + j] = 1;
       }
     }
   }
