@@ -1,10 +1,11 @@
 import Piece from "../../components/piece/Piece";
-import { ButtonsDiv, ConsoleStyle, Container, Screen } from "./Game.styles";
+import { ConsoleStyle, Container, Screen } from "./Game.styles";
 import { useGame } from "../../hooks/useGame";
 import { useEffect } from "react";
 import { piecesMap } from "../../constants/pieces";
-import InfoPanel from "../../components/InfoPanel.tsx/InfoPanel";
+import InfoPanel from "../../components/InfoPanel/InfoPanel";
 import { useParams } from "react-router-dom";
+import Controllers from "../../components/mobileButtons/Controllers";
 
 export default function Game() {
   const gameState = useGame();
@@ -13,10 +14,10 @@ export default function Game() {
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
-    /* const interval = setInterval(() => {
+    const interval = setInterval(() => {
       gameState.moveDown();
     }, timeInterval);
-    return () => clearInterval(interval); */
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -79,7 +80,12 @@ export default function Game() {
           speed={Number(speed)}
         />
       </ConsoleStyle>
-      <ButtonsDiv></ButtonsDiv>
+      <Controllers
+        moveLeft={gameState.moveLeft}
+        moveRight={gameState.moveRight}
+        moveDown={gameState.moveDown}
+        rotate={gameState.rotate}
+      />
     </Container>
   );
 }

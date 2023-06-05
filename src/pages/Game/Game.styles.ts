@@ -39,9 +39,3 @@ export const Screen = styled.div`
     border-radius: 1vw 0 0 1vw;
   }
 `;
-
-export const ButtonsDiv = styled.div`
-  background-color: #d62222;
-  height: 20vw;
-  width: ${2 * unit * MAX_HORIZONTAL + 42}vw;
-`
