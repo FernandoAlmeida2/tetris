@@ -15,10 +15,10 @@ export default function Game() {
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
-    /* const interval = setInterval(() => {
+    const interval = setInterval(() => {
       gameState.moveDown();
     }, timeInterval);
-    return () => clearInterval(interval); */
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
