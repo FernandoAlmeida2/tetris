@@ -1,5 +1,5 @@
 import { piecesMap, PiecesType } from "../../constants/pieces";
-import { Container, PieceStyle, RowStyle } from "./styles";
+import { Container, PieceStyle, RowStyle, TextStyle } from "./styles";
 
 type Props = {
   nextPiece: PiecesType;
@@ -10,29 +10,23 @@ type Props = {
 export default function InfoPanel({ nextPiece, score, speed }: Props) {
   return (
     <Container>
+      <TextStyle>
+        <h1>{getScore(score)}</h1>
+        <p> SCORE</p>
+      </TextStyle>
       <div>
-        <p>
-          {getScore(score)}
-          <br />
-          SCORE
-        </p>
-        <div>
-          {piecesMap[nextPiece][0].map((line, j) => (
-            <RowStyle key={j}>
-              {line.map((square: number, i: number) => (
-                <PieceStyle isColored={square} key={i} />
-              ))}
-            </RowStyle>
-          ))}
-        </div>
+        {piecesMap[nextPiece][0].map((line, j) => (
+          <RowStyle key={j}>
+            {line.map((square: number, i: number) => (
+              <PieceStyle isColored={square} key={i} />
+            ))}
+          </RowStyle>
+        ))}
       </div>
-      <div>
-        <p>
-          {speed}
-          <br />
-          SPEED
-        </p>
-      </div>
+      <TextStyle>
+        <h1>{speed}</h1>
+        <p> SPEED</p>
+      </TextStyle>
     </Container>
   );
 }
