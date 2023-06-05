@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export const ConsoleStyle = styled.div`
   width: ${unit * MAX_HORIZONTAL + 21}vw;
-  height: 100vh;
+  height: ${unit * MAX_VERTICAL + 4}vw;
   display: flex;
   justify-content: center;
   background-color: #d62222;
@@ -29,7 +29,7 @@ export const Screen = styled.div`
   height: ${unit * MAX_VERTICAL + 1}vw;
   border: 0.5vw solid #10312a;
   background-color: #e8e1cf;
-  margin-top: 3.5vw;
+  margin-top: 1.5vw;
   border-radius: 0.5vw 0 0 0.5vw;
   position: relative;
   @media (max-width: 700px) {
@@ -37,5 +37,15 @@ export const Screen = styled.div`
     width: ${2 * unit * MAX_HORIZONTAL + 1}vw;
     height: ${2 * unit * MAX_VERTICAL + 1}vw;
     border-radius: 1vw 0 0 1vw;
+  }
+`;
+
+export const ReturnStyle = styled.p`
+  line-height: 28px;
+  cursor: pointer;
+
+  @media (max-width: 700px) {
+    line-height: 5vw;
+    font-size: 3.5vw;
   }
 `;

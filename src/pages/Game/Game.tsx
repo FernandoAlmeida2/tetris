@@ -1,23 +1,24 @@
 import Piece from "../../components/piece/Piece";
-import { ConsoleStyle, Container, Screen } from "./Game.styles";
+import { ConsoleStyle, Container, ReturnStyle, Screen } from "./Game.styles";
 import { useGame } from "../../hooks/useGame";
 import { useEffect } from "react";
 import { piecesMap } from "../../constants/pieces";
 import InfoPanel from "../../components/InfoPanel/InfoPanel";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Controllers from "../../components/mobileButtons/Controllers";
 
 export default function Game() {
   const gameState = useGame();
   const { speed } = useParams();
+  const navigate = useNavigate();
   const timeInterval = 1000 - Number(speed) * 100;
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
-    const interval = setInterval(() => {
+    /* const interval = setInterval(() => {
       gameState.moveDown();
     }, timeInterval);
-    return () => clearInterval(interval);
+    return () => clearInterval(interval); */
   }, []);
 
   useEffect(() => {
@@ -86,6 +87,7 @@ export default function Game() {
         moveDown={gameState.moveDown}
         rotate={gameState.rotate}
       />
+      <ReturnStyle onClick={() => navigate("/")}>Return to Menu</ReturnStyle>
     </Container>
   );
 }

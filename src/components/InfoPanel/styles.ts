@@ -6,7 +6,7 @@ export const Container = styled.div`
   width: 8vw;
   height: ${2 * MAX_VERTICAL + 1}vw;
   background-color: #e8e1cf;
-  margin-top: 3.5vw;
+  margin-top: 1.5vw;
   display: flex;
   flex-direction: column;
   align-items: center;

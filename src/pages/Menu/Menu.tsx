@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ButtonStyle, Container, InputStyle } from "./Menu.styles";
+import { Container, InfoButton, InfoDiv, InputStyle, StartButton } from "./Menu.styles";
 
 export default function Menu() {
   const navigate = useNavigate();
   const [speed, setSpeed] = useState("0");
+  const [displayInfo, setDisplayInfo] = useState(false);
 
   return (
     <Container>
@@ -21,7 +22,9 @@ export default function Menu() {
             onChange={(e) => setSpeed(e.target.value)}
           />
         </label>
-        <ButtonStyle onClick={() => navigate(`/game/${speed}`)}>New Game</ButtonStyle>
+        <StartButton onClick={() => navigate(`/game/${speed}`)}>New Game</StartButton>
+        <InfoButton onClick={() => setDisplayInfo(!displayInfo)}>Commands</InfoButton>
+        {displayInfo && <InfoDiv />}
       </div>
     </Container>
   );

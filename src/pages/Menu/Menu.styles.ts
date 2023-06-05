@@ -50,7 +50,7 @@ export const InputStyle = styled.input`
   }
 `;
 
-export const ButtonStyle = styled.button`
+export const StartButton = styled.button`
   color: #fff;
   background-color: #d62222;
   width: 250px;
@@ -73,3 +73,34 @@ export const ButtonStyle = styled.button`
     }
   }
 `;
+
+export const InfoButton = styled.button`
+  color: #fff;
+  background-color: #d62222;
+  width: 250px;
+  height: 45px;
+  cursor: pointer;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  :hover {
+    font-weight: 700;
+    font-size: 16px;
+  }
+  @media (max-width: 700px) {
+    display: none;
+  }
+`;
+
+export const InfoDiv = styled.div`
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  min-height: 100%;
+  width: 100%;
+  background: rgba(119, 119, 119, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
