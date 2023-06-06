@@ -5,7 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 200px;
+  gap: 150px;
   align-items: center;
   color: #10312a;
   h1 {
@@ -20,7 +20,7 @@ export const Container = styled.div`
     }
   }
   @media (max-width: 700px) {
-    gap: 48.5vw;
+    gap: 40vw;
     h1 {
       font-size: 13.6vw;
     }
@@ -39,8 +39,10 @@ export const InputStyle = styled.input`
   padding-left: 10px;
   font-size: 14px;
   color: #10312a;
+  background-color: #fff;
   ::placeholder {
     opacity: 1;
+    color: #bfbdbd;
   }
   @media (max-width: 700px) {
     width: 67vw;
@@ -91,3 +93,9 @@ export const InfoButton = styled.button`
     display: none;
   }
 `;
+
+export const FormStyle = styled.form`
+  display: flex;
+    flex-direction: column;
+    gap: 10px;
+`

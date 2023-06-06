@@ -20,9 +20,9 @@ export const InfoDiv = styled.div`
   padding: 2vw 1vw 0 1vw;
   h1 {
     text-align: center;
-    font-size: 16px;
+    font-size: 2vw;
     font-weight: 700;
-    line-height: 24px;
+    margin-bottom: 0.5vw;
   }
 `;
 

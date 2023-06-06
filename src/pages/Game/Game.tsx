@@ -1,16 +1,18 @@
 import Piece from "../../components/piece/Piece";
 import { ConsoleStyle, Container, ReturnStyle, Screen } from "./Game.styles";
 import { useGame } from "../../hooks/useGame";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { piecesMap } from "../../constants/pieces";
 import InfoPanel from "../../components/InfoPanel/InfoPanel";
 import { useNavigate, useParams } from "react-router-dom";
 import Controllers from "../../components/mobileButtons/Controllers";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 export default function Game() {
   const gameState = useGame();
-  const { speed } = useParams();
   const navigate = useNavigate();
+  const {name, speed} = useSelector((state: RootState) => state.game);
   const timeInterval = 1000 - Number(speed) * 90;
 
   useEffect(() => {
