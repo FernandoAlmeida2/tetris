@@ -6,6 +6,7 @@ export function canMoveDown(gameState: GameStateType) {
   const piece = piecesMap[type][rotation];
   for (let i = 0; i < piece.length; i++) {
     for (let j = 0; j < piece[i].length; j++) {
+      if (y + i < 0) continue;
       if (piece[i][j] === 0) continue;
       if (grid[y + i + 1] === undefined || grid[y + i + 1][x + j] === undefined)
         return false;
@@ -20,6 +21,11 @@ export function canMoveLeft(gameState: GameStateType) {
   const piece = piecesMap[type][rotation];
   for (let i = 0; i < piece.length; i++) {
     for (let j = 0; j < piece[i].length; j++) {
+      if (y + i < 0) {
+        if (x + j - 1 < grid[0].length) continue;
+        if (piece[i][j] === 1)
+          return false;
+      }
       if (piece[i][j] === 0) continue;
       if (grid[y + i][x + j - 1] === undefined) return false;
       if (grid[y + i][x + j - 1] === 1) return false;
@@ -33,6 +39,11 @@ export function canMoveRight(gameState: GameStateType) {
   const piece = piecesMap[type][rotation];
   for (let i = 0; i < piece.length; i++) {
     for (let j = 0; j < piece[i].length; j++) {
+      if (y + i < 0) {
+        if (x + j + 1 < grid[0].length) continue;
+        if (piece[i][j] === 1)
+          return false;
+      }
       if (piece[i][j] === 0) continue;
       if (grid[y + i][x + j + 1] === undefined) return false;
       if (grid[y + i][x + j + 1] === 1) return false;
@@ -48,6 +59,7 @@ export function rotateIfCan(gameState: GameStateType) {
   const piece = piecesMap[type][newRotation];
   for (let i = 0; i < piece.length; i++) {
     for (let j = 0; j < piece[i].length; j++) {
+      if (y + i < 0 && x + j < grid[0].length) continue;
       if (piece[i][j] === 1) {
         if (grid[y + i] === undefined || grid[y + i][x + j] === undefined)
           return rotation;

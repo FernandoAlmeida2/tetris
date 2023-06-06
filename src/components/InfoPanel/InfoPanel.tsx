@@ -1,5 +1,11 @@
 import { piecesMap, PiecesType } from "../../constants/pieces";
-import { Container, PiecesDiv, PieceStyle, RowStyle, TextStyle } from "./styles";
+import {
+  Container,
+  PiecesDiv,
+  PieceStyle,
+  RowStyle,
+  TextStyle,
+} from "./styles";
 
 type Props = {
   nextPiece: PiecesType;

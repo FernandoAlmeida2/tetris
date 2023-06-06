@@ -18,21 +18,21 @@ export default function Game() {
     const interval = setInterval(() => {
       gameState.moveDown();
     }, timeInterval);
-    
+
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     if (gameState.blockedPiecesCounter > 0) {
-      if(gameState.pieceY0 <= 0) {
+      if (gameState.pieceY0 <= 0) {
         gameState.gameOver();
         const timeout = setTimeout(() => {
           gameState.reset();
         }, 100);
         return () => clearTimeout(timeout);
-      } else{
+      } else {
         gameState.fetchNewPiece();
-      }    
+      }
     }
   }, [gameState.blockedPiecesCounter]);
 
@@ -78,7 +78,7 @@ export default function Game() {
                   key={i}
                   x={gameState.pieceX0 + i}
                   y={gameState.pieceY0 + j}
-                  isColored={square}
+                  isColored={gameState.pieceY0 + j < 0 ? 0 : square}
                 />
               ))}
             </div>
