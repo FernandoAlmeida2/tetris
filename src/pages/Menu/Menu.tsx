@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, InfoButton, InfoDiv, InputStyle, StartButton } from "./Menu.styles";
+import Commands from "../../components/InfoCommands/Commands";
+import { Container, InfoButton, InputStyle, StartButton } from "./Menu.styles";
 
 export default function Menu() {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ export default function Menu() {
         </label>
         <StartButton onClick={() => navigate(`/game/${speed}`)}>New Game</StartButton>
         <InfoButton onClick={() => setDisplayInfo(!displayInfo)}>Commands</InfoButton>
-        {displayInfo && <InfoDiv />}
+        {displayInfo && <Commands setDisplayInfo={setDisplayInfo} />}
       </div>
     </Container>
   );

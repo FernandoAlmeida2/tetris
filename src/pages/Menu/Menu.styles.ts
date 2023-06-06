@@ -91,16 +91,3 @@ export const InfoButton = styled.button`
     display: none;
   }
 `;
-
-export const InfoDiv = styled.div`
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 2;
-  min-height: 100%;
-  width: 100%;
-  background: rgba(119, 119, 119, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
