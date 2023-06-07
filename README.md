@@ -22,7 +22,7 @@ Na versão desktop, temos os seguintes comandos:
 <br />
 
 Na versão mobile, os comandos são feitos por meio de botões disponíveis na tela
-<img src="./src/assets/images/gameMobile.gif" height="312px" alt="My project">
+<img src="./src/assets/images/gameMobile.gif" width= "681px" height="312px" alt="My project">
 
 <br />
 
