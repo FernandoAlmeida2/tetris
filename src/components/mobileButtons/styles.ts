@@ -4,6 +4,9 @@ import { unit } from "../../constants/pieces";
 
 export const Container = styled.div`
   display: none;
+  *{
+    font-family: 'Roboto', sans-serif;
+  }
   @media (max-width: 700px) {
     display: initial;
   }
@@ -11,7 +14,7 @@ export const Container = styled.div`
 
 export const ButtonsDiv = styled.div`
   background-color: #d62222;
-  height: 20vw;
+  height: 32vw;
   width: ${2 * unit * MAX_HORIZONTAL + 42}vw;
   display: flex;
   align-items: center;
@@ -19,6 +22,7 @@ export const ButtonsDiv = styled.div`
   font-size: 2vw;
   color: #fff;
   padding: 2vw 15vw;
+  margin-bottom: 2vw;
 `;
 export const DirectionalStyle = styled.div`
   display: flex;
@@ -27,7 +31,7 @@ export const DirectionalStyle = styled.div`
 `;
 
 export const LeftRightDiv = styled.div`
-  width: 20vw;
+  width: 25vw;
   display: flex;
   justify-content: space-between;
 `;
@@ -39,8 +43,8 @@ export const SmallButtonDiv = styled.div`
   align-items: center;
   gap: 1vw;
   button {
-    width: 6vw;
-    height: 6vw;
+    width: 9vw;
+    height: 9vw;
     border-radius: 6vw;
     background-color: #f8dd12;
     box-shadow: 1vw 0.86vw 4vw 0.14vw rgba(0, 0, 0, 0.24);
@@ -60,8 +64,8 @@ export const BigButtonDiv = styled.div`
   align-items: center;
   gap: 1vw;
   button {
-    width: 8vw;
-    height: 8vw;
+    width: 15vw;
+    height: 15vw;
     border-radius: 8vw;
     background-color: #f8dd12;
     box-shadow: 1vw 0.86vw 4vw 0.14vw rgba(0, 0, 0, 0.24);

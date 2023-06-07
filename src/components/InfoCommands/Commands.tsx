@@ -11,7 +11,7 @@ export default function Commands({setDisplayInfo} : Props) {
     <Container>
       <InfoDiv>
         <IconStyle><IoIosCloseCircleOutline size={"24px"} onClick={() => setDisplayInfo(false)} /></IconStyle>
-        <h1>Controls</h1>
+        <h2>Controls</h2>
         <p>Up arrow / R: Rotate clockwise</p>
         <p>Left arrow / A: Move left</p>
         <p>Right arrow / D: Move right</p>

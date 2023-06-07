@@ -11,16 +11,22 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  * {
+    font-family: "Roboto", sans-serif;
+  }
 `;
 export const InfoDiv = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   height: 16vw;
   width: 24vw;
   background-color: #fff;
-  padding: 2vw 1vw 0 1vw;
-  h1 {
+  padding: 1vw;
+  h2 {
     text-align: center;
-    font-size: 2vw;
+    font-size: 1.5vw;
     font-weight: 700;
     margin-bottom: 0.5vw;
   }

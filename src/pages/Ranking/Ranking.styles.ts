@@ -11,6 +11,9 @@ export const Container = styled.div`
   h1 {
     font-size: 64px;
   }
+  * {
+    font-family: "Tetris", sans-serif;
+  }
   @media (max-width: 700px) {
     gap: 4vw;
     padding: 16vw;
@@ -24,18 +27,16 @@ export const RankingDiv = styled.div`
   background-color: #eae8e8;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   min-height: 80vh;
   width: 80vw;
   border: 0.8vw solid #10312a;
   border-radius: 2vw;
-  gap: 0.5vw;
-  padding: 1vw;
+  padding: 1vw 0 1vw 0;
   @media (max-width: 700px) {
-    padding-top: 2vw;
     min-height: 40vh;
     border: 1.2vw solid #10312a;
     border-radius: 4vw;
-    gap: 0.5vw;
   }
 `;
 

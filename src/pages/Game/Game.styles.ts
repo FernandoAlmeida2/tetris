@@ -18,7 +18,7 @@ export const ConsoleStyle = styled.div`
   border-radius: 2vw 2vw 0 0;
   @media (max-width: 700px) {
     height: 90vw;
-    margin-top: 8vw;
+    margin-top: 12vw;
     width: ${2 * unit * MAX_HORIZONTAL + 42}vw;
     border-radius: 4vw 4vw 0 0;
   }

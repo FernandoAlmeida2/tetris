@@ -1,4 +1,5 @@
 export const unit = 2;
+export const SPEED_OPTIONS = [1000, 800, 600, 400, 300, 200, 150, 100, 80, 60, 40];
 
 export const pieceNames: PiecesType[] = [
   "iPiece",

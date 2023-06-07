@@ -8,7 +8,8 @@ export const Container = styled.div`
   gap: 150px;
   align-items: center;
   color: #10312a;
-  h1 {                             
+  font-family: "Tetris", sans-serif;
+  h1 {
     font-size: 64px;
   }
   div {
@@ -78,6 +79,7 @@ export const ButtonStyle = styled.button`
 `;
 
 export const InfoButton = styled.button`
+
   color: #fff;
   background-color: #d62222;
   width: 250px;
@@ -97,6 +99,6 @@ export const InfoButton = styled.button`
 
 export const FormStyle = styled.form`
   display: flex;
-    flex-direction: column;
-    gap: 10px;
-`
+  flex-direction: column;
+  gap: 10px;
+`;

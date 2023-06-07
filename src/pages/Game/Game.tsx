@@ -2,19 +2,19 @@ import Piece from "../../components/piece/Piece";
 import { ConsoleStyle, Container, ReturnStyle, Screen } from "./Game.styles";
 import { useGame } from "../../hooks/useGame";
 import { useEffect } from "react";
-import { piecesMap } from "../../constants/pieces";
+import { piecesMap, SPEED_OPTIONS } from "../../constants/pieces";
 import InfoPanel from "../../components/InfoPanel/InfoPanel";
 import { useNavigate } from "react-router-dom";
 import Controllers from "../../components/mobileButtons/Controllers";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import { getRanking, updateRanking } from "./Game.utils";
+import { updateRanking } from "./Game.utils";
 
 export default function Game() {
   const gameState = useGame();
   const navigate = useNavigate();
   const { name, speed } = useSelector((state: RootState) => state.game);
-  const timeInterval = 1000 - Number(speed) * 90;
+  const timeInterval = SPEED_OPTIONS[speed];
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
@@ -36,7 +36,7 @@ export default function Game() {
         updateRanking(name, Number(gameState.score), speed);
         const timeout = setTimeout(() => {
           gameState.reset();
-        }, 90);
+        }, 20);
         return () => clearTimeout(timeout);
       } else {
         gameState.fetchNewPiece();
