@@ -8,8 +8,7 @@ export const Container = styled.div`
   gap: 150px;
   align-items: center;
   color: #10312a;
-  h1 {
-    font-family: 'Tetris', sans-serif;                               
+  h1 {                             
     font-size: 64px;
   }
   div {
