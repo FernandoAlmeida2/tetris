@@ -6,7 +6,7 @@ export function canMoveDown(gameState: GameStateType) {
   const piece = piecesMap[type][rotation];
   for (let i = 0; i < piece.length; i++) {
     for (let j = 0; j < piece[i].length; j++) {
-      if (y + i < 0) continue;
+      if (y + i + 1 < 0) continue;
       if (piece[i][j] === 0) continue;
       if (grid[y + i + 1] === undefined || grid[y + i + 1][x + j] === undefined)
         return false;

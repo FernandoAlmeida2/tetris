@@ -39,6 +39,7 @@ export const InputStyle = styled.input`
   padding-left: 10px;
   font-size: 14px;
   color: #10312a;
+  border: none;
   background-color: #fff;
   ::placeholder {
     opacity: 1;

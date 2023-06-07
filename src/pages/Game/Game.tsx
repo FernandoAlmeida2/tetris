@@ -4,19 +4,24 @@ import { useGame } from "../../hooks/useGame";
 import { useEffect } from "react";
 import { piecesMap } from "../../constants/pieces";
 import InfoPanel from "../../components/InfoPanel/InfoPanel";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Controllers from "../../components/mobileButtons/Controllers";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import { getRanking, updateRanking } from "./Game.utils";
 
 export default function Game() {
   const gameState = useGame();
   const navigate = useNavigate();
-  const {name, speed} = useSelector((state: RootState) => state.game);
+  const { name, speed } = useSelector((state: RootState) => state.game);
   const timeInterval = 1000 - Number(speed) * 90;
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  useEffect(() => {
     const interval = setInterval(() => {
       gameState.moveDown();
     }, timeInterval);
@@ -26,11 +31,12 @@ export default function Game() {
 
   useEffect(() => {
     if (gameState.blockedPiecesCounter > 0) {
-      if (gameState.pieceY0 <= 0) {
+      if (gameState.pieceY0 < 0) {
         gameState.gameOver();
+        updateRanking(name, Number(gameState.score), speed);
         const timeout = setTimeout(() => {
           gameState.reset();
-        }, 100);
+        }, 90);
         return () => clearTimeout(timeout);
       } else {
         gameState.fetchNewPiece();
