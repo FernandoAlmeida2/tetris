@@ -6,7 +6,7 @@ Esse projeto Frontend é uma versão do mundialmente conhecido jogo Tetris, no e
 
 Na tela inicial o usuário escolhe um nome, e a velocidade de descida das peças. Além disso, pode ir para a página com o ranking de melhores pontuações (usa-se armazenamento local).
 
-<img src="./src/assets/images/menuTetris.gif" height="220px" alt="My project">
+<img src="./src/assets/images/menuTetris.gif" height="312px" alt="My project">
 
 ## Comandos
 
@@ -17,12 +17,12 @@ Na versão desktop, temos os seguintes comandos:
 - `→ ou D`: move a peça para a direita
 - `← ou A`: move a peça para a esquerda
 
-<img src="./src/assets/images/gameDesktop.gif" height="220px" alt="My project">
+<img src="./src/assets/images/gameDesktop.gif" height="312px" alt="My project">
 
 <br />
 
 Na versão mobile, os comandos são feitos por meio de botões disponíveis na tela
-<img src="./src/assets/images/gameMobile.gif" height="220px" alt="My project">
+<img src="./src/assets/images/gameMobile.gif" height="312px" alt="My project">
 
 <br />
 
