@@ -9,7 +9,8 @@ export const Container = styled.div`
   align-items: center;
   color: #10312a;
   h1 {
-    font-size: 56px;
+    font-family: 'Tetris', sans-serif;                               
+    font-size: 64px;
   }
   div {
     display: flex;
