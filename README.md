@@ -1,46 +1,61 @@
-# Getting Started with Create React App
+# Projeto pessoal: Tetris
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Sobre
 
-## Available Scripts
+Esse projeto Frontend é uma versão do mundialmente conhecido jogo Tetris, no estilo dos antigos jogos de mini-game dos anos 90.
 
-In the project directory, you can run:
+Na tela inicial o usuário escolhe um nome, e a velocidade de descida das peças. Além disso, pode ir para a página com o ranking de melhores pontuações (usa-se armazenamento local).
 
-### `npm start`
+<img src="./src/assets/images/menuTetris.gif" height="220px" alt="My project">
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Comandos
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Na versão desktop, temos os seguintes comandos:
 
-### `npm test`
+- `↑ ou R`: rotaciona a peça (sentido horário)
+- `↓ ou S`: move a peça para baixo (mais rapidamente)
+- `→ ou D`: move a peça para a direita
+- `← ou A`: move a peça para a esquerda
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<img src="./src/assets/images/gameDesktop.gif" height="220px" alt="My project">
 
-### `npm run build`
+<br />
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Na versão mobile, os comandos são feitos por meio de botões disponíveis na tela
+<img src="./src/assets/images/gameMobile.gif" height="220px" alt="My project">
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<br />
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+O projeto pode ser visto em https://tetris-blond-omega.vercel.app/
 
-### `npm run eject`
+## Tecnologias
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Algumas das principais tecnologias e frameworks utilizados no projeto.<br/><br/>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<div>
+    <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" height="22px" />
+    <img src="https://img.shields.io/badge/react-app%20-%2320232a.svg?&style=for-the-badge&color=60ddf9&logo=react&logoColor=%2361DAFB" height="22px" />
+    <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" height="22px" />
+    <img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white" height="22px" />
+    <img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white" height="22px"/>
+    <img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white" height="22px" />
+    
+</div>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Como rodar o projeto
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Clone o repositório
 
-## Learn More
+2. Instale as dependências
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm i
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Execute o projeto
+
+```bash
+npm start
+```
+
+4. Acesse o endereço http://localhost:3000 no navegador de sua preferência.
