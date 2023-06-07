@@ -29,7 +29,7 @@ const ResetStyle = createGlobalStyle`
     body {
         line-height: 1;
         * {
-            font-family: 'Tetris', sans-serif;  
+            font-family: 'Tetris', sans-serif;                                       
             box-sizing: border-box;
         }
     }

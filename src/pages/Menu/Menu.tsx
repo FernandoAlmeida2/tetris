@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Commands from "../../components/InfoCommands/Commands";
 import { changeName, changeSpeed } from "../../redux/gameSlice";
-import { Container, FormStyle, InfoButton, InputStyle, StartButton } from "./Menu.styles";
+import { Container, FormStyle, InfoButton, InputStyle, ButtonStyle } from "./Menu.styles";
 
 export default function Menu() {
   const navigate = useNavigate();
@@ -41,12 +41,14 @@ export default function Menu() {
             <InputStyle
               placeholder="Your name"
               value={name}
+              maxLength={10}
               onChange={(e) => setName(e.target.value)}
               required
             />
           </label>
-          <StartButton type="submit">New Game</StartButton>
+          <ButtonStyle type="submit">New Game</ButtonStyle>
         </FormStyle>
+        <ButtonStyle onClick={() => navigate("/ranking")}>Ranking</ButtonStyle>
         <InfoButton onClick={() => setDisplayInfo(!displayInfo)}>
           Commands
         </InfoButton>

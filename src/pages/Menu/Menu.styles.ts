@@ -53,7 +53,7 @@ export const InputStyle = styled.input`
   }
 `;
 
-export const StartButton = styled.button`
+export const ButtonStyle = styled.button`
   color: #fff;
   background-color: #d62222;
   width: 250px;

@@ -16,6 +16,9 @@ export const Container = styled.div`
   border-style: solid;
   border-color: #10312a;
   border-radius: 0 0.5vw 0.5vw 0;
+  *{
+    font-family: 'Roboto', sans-serif;
+  }
   @media (max-width: 700px) {
     width: 18vw;
     height: ${4 * MAX_VERTICAL + 1}vw;
@@ -34,7 +37,7 @@ export const TextStyle = styled.div`
     margin-bottom: 1vw;
   }
   p {
-    font-size: 1.5vw;
+    font-size: 2vw;
   }
   @media (max-width: 700px) {
     h1 {
@@ -43,7 +46,7 @@ export const TextStyle = styled.div`
       margin-bottom: 2vw;
     }
     p {
-      font-size: 3vw;
+      font-size: 4vw;
     }
   }
 `;
