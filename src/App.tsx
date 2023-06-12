@@ -4,6 +4,7 @@ import ResetStyle from "./assets/styles/Reset";
 import Menu from "./pages/Menu/Menu";
 import Game from "./pages/Game/Game";
 import Ranking from "./pages/Ranking/Ranking";
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/ranking" element={<Ranking />} />
           </Routes>
         </Container>
+        <Analytics />
       </BrowserRouter>
     </>
   );
